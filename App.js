@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Text, TextInput, View, StyleSheet } from "react-native";
+import AddInput from "./components/AddInput";
 
 const App = () => {
   const [message, setMessage] = React.useState();
@@ -14,6 +15,7 @@ const App = () => {
           }, Math.floor(Math.random() * 200));
         }}
       />
+      {/* <AddInput></AddInput> */}
       {message && (
         <Text style={styles.messageText} testID="printed-message">
           {message}
