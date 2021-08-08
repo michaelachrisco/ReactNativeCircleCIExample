@@ -1,62 +1,56 @@
-//AddInput.js
-
 import React, { useState } from "react";
-import {View, TextInput, Text, TouchableOpacity} from 'react-native'
-import {Alert} from 'react-native';
 import styled from "styled-components";
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
-export default function AddInput() {
+export default function AddInput({ submitHandler }) {
   const [value, setValue] = useState("");
 
   const onChangeText = (text) => {
     setValue(text);
   };
 
-  
-
   return (
-    <View>
-      <View>
-        <TextInput placeholder="Add Task..." onChangeText= 
-         {onChangeText} />
-      </View>
-      <TouchableOpacity
-      title='Add task...'
+    <ComponentContainer>
+      <InputContainer>
+        <Input placeholder="Add Task..." onChangeText={onChangeText} />
+      </InputContainer>
+      <SubmitButton
         onPress={() => {
-            Alert.alert('button clicked')
+          setValue(submitHandler(value));
         }}
       >
-        <Text>Submit</Text>
-      </TouchableOpacity>
-    </View>
+        <FontAwesomeIcon icon={ faPlus } size={ 28 } />
+      </SubmitButton>
+    </ComponentContainer>
   );
+}
 
-  //styles
 const ComponentContainer = styled.View`
-flex-direction: row;
+  flex-direction: row;
 `;
 
 const InputContainer = styled.View`
-flex-direction: row;
-border-radius: 10px;
+  flex-direction: row;
+  border-radius: 10px;
 `;
 
 const Input = styled.TextInput`
-font-size: 20px;
-background-color: white;
-width: 300px;
-margin-right: 20px;
-padding: 10px;
-margin-bottom: 20px;
-border-radius: 10px;
+  font-family: poppins-regular;
+  font-size: 20px;
+  background-color: white;
+  width: 300px;
+  margin-right: 20px;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 10px;
 `;
 
 const SubmitButton = styled.TouchableOpacity`
-width: 50px;
-justify-content: center;
-align-items: center;
-background-color: whitesmoke;
-margin-bottom: 20px;
-border-radius: 50px;
+  width: 50px;
+  justify-content: center;
+  align-items: center;
+  background-color: whitesmoke;
+  margin-bottom: 20px;
+  border-radius: 50px;
 `;
-}
